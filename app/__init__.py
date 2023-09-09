@@ -1,7 +1,11 @@
 from flask import Flask, jsonify
+from flask_marshmallow import Marshmallow
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config.from_object('config')
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
-@app.route('/', methods=['GET'])
-def root():
-  return jsonify({'message': 'To fodaa'})
+
+from .routes import routes 
